@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react";
 import Navigation from "components/Navigation/Navigation";
 import AuthNav from "components/AuthNav/AuthNav";
+import { useModalHandlers } from "hooks/useModalHandlers";
 
 interface MenuProps {
-  onClose: () => void;
-  onAuthOpen: (mode: "login" | "register") => void;
+  onAction: (mode?: "login" | "register") => void;
 }
 
-const Menu: React.FC<MenuProps> = ({ onClose, onAuthOpen }) => {
+const Menu: React.FC<MenuProps> = ({ onAction }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    setTimeout(() => setIsVisible(true), 10);
+  useModalHandlers(onAction);
 
-    return () => {
-      document.body.style.overflow = "";
-    };
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 10);
   }, []);
 
   const handleClose = () => {
     setIsVisible(false);
-    setTimeout(onClose, 300);
+    setTimeout(() => onAction(), 300);
   };
 
   return (
@@ -47,11 +44,11 @@ const Menu: React.FC<MenuProps> = ({ onClose, onAuthOpen }) => {
         </button>
 
         <div className="absolute left-1/2 top-2/6 -translate-x-1/2  flex flex-col items-center gap-4">
-          <Navigation variant="menu" />
+          <Navigation variant="menu" onLinkClick={handleClose} />
         </div>
 
         <div className="mt-auto flex flex-col">
-          <AuthNav variant="menu" onAuthOpen={onAuthOpen} />
+          <AuthNav variant="menu" onAction={onAction} />
         </div>
       </div>
     </div>

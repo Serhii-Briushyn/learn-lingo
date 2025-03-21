@@ -1,11 +1,18 @@
 import { NavLink, NavLinkProps } from "react-router-dom";
 import clsx from "clsx";
+import { useAuth } from "hooks/useAuth";
 
 interface NavigationProps {
   variant?: "menu" | "header";
+  onLinkClick?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ variant = "header" }) => {
+const Navigation: React.FC<NavigationProps> = ({
+  variant = "header",
+  onLinkClick,
+}) => {
+  const { user } = useAuth();
+
   const linkClass: NavLinkProps["className"] = ({ isActive }) => {
     const baseHeader = "text-base font-normal transition-all";
     const baseMenu =
@@ -28,12 +35,17 @@ const Navigation: React.FC<NavigationProps> = ({ variant = "header" }) => {
 
   return (
     <>
-      <NavLink className={linkClass} to="/">
+      <NavLink onClick={onLinkClick} className={linkClass} to="/">
         Home
       </NavLink>
-      <NavLink className={linkClass} to="/teachers">
+      <NavLink onClick={onLinkClick} className={linkClass} to="/teachers">
         Teachers
       </NavLink>
+      {user && (
+        <NavLink onClick={onLinkClick} className={linkClass} to="/favorites">
+          Favorites
+        </NavLink>
+      )}
     </>
   );
 };

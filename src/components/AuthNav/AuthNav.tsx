@@ -4,9 +4,10 @@ import clsx from "clsx";
 import toast from "react-hot-toast";
 
 interface AuthNavProps {
-  onAuthOpen: (mode: "login" | "register") => void;
+  onAction: (mode?: "login" | "register") => void;
   variant?: "menu" | "header";
 }
+
 const headerLoginLogoutBtn =
   "flex gap-2 items-center text-base/tight font-bold cursor-pointer text-black transition-all hover:text-grey hover:scale-110 ease-in";
 const headerRegisterBtn =
@@ -14,20 +15,20 @@ const headerRegisterBtn =
 const menuUniversalBtn =
   "bg-accent flex gap-2 justify-center items-center text-base font-bold cursor-pointer border-2 border-accent box-border rounded-xl px-10 py-3.5 transition-all ease-in hover:bg-accent-light";
 
-const AuthNav: React.FC<AuthNavProps> = ({
-  onAuthOpen,
-  variant = "header",
-}) => {
+const AuthNav: React.FC<AuthNavProps> = ({ onAction, variant = "header" }) => {
   const { user } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("You have successfully logged out!");
+    onAction();
+  };
 
   return (
     <>
       {user ? (
         <button
-          onClick={() => {
-            logout();
-            toast.success("You have successfully logged out!");
-          }}
+          onClick={handleLogout}
           className={
             variant === "header" ? headerLoginLogoutBtn : menuUniversalBtn
           }
@@ -49,7 +50,7 @@ const AuthNav: React.FC<AuthNavProps> = ({
           }
         >
           <button
-            onClick={() => onAuthOpen("login")}
+            onClick={() => onAction("login")}
             className={
               variant === "header" ? headerLoginLogoutBtn : menuUniversalBtn
             }
@@ -65,12 +66,12 @@ const AuthNav: React.FC<AuthNavProps> = ({
             Log in
           </button>
           <button
-            onClick={() => onAuthOpen("register")}
+            onClick={() => onAction("register")}
             className={
               variant === "header" ? headerRegisterBtn : menuUniversalBtn
             }
           >
-            Registration
+            Sign Up
           </button>
         </div>
       )}

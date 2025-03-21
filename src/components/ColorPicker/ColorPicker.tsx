@@ -21,10 +21,20 @@ const ColorPicker: React.FC = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const handleColorSelect = (color: {
+    main: string;
+    light: string;
+    gradientFrom: string;
+    gradientTo: string;
+  }) => {
+    changeTheme(color);
+    setIsOpen(false);
+  };
+
   return (
     <div className="absolute top-6 right-6 color-picker" ref={pickerRef}>
       <div
-        className="w-10 h-10 rounded-full cursor-pointer border border-gray-300"
+        className="w-8 h-8 rounded-full cursor-pointer border border-grey-light transition-all duration-300 hover:scale-110"
         style={{ backgroundColor: `var(${selectedColor})` }}
         onClick={() => setIsOpen(!isOpen)}
       ></div>
@@ -34,9 +44,9 @@ const ColorPicker: React.FC = () => {
           {colors.map((color) => (
             <div
               key={color.main}
-              className="w-10 h-10 rounded-full cursor-pointer transition-all duration-300 hover:scale-105 border border-gray-300"
+              className="w-8 h-8 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 border border-grey-light"
               style={{ backgroundColor: `var(${color.main})` }}
-              onClick={() => changeTheme(color)}
+              onClick={() => handleColorSelect(color)}
             ></div>
           ))}
         </div>

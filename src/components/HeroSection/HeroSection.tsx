@@ -1,3 +1,4 @@
+import ColorPicker from "components/ColorPicker/ColorPicker";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
@@ -34,6 +35,7 @@ const HeroSection = () => {
             <use href={`/sprite.svg#icon-apple`} />
           </svg>
         </div>
+        <ColorPicker />
       </div>
     </section>
   );
