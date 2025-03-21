@@ -4,15 +4,25 @@ import PrivateRoute from "components/PrivateRoute";
 import ScrollToTopButton from "components/ScrollToTopButton/ScrollToTopButton";
 import { FavoritesProvider } from "context/FavoritesProvider";
 import { TeachersProvider } from "context/TeachersProvider";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 const HomePage = lazy(() => import("pages/Home/HomePage"));
 const TeachersPage = lazy(() => import("pages/Teachers/TeachersPage"));
 const FavoritesPage = lazy(() => import("pages/Favorites/FavoritesPage"));
 
 function App() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  useEffect(() => {
+    document.body.style.setProperty(
+      "--background-color",
+      isHomePage ? "#ffffff" : "#f8f8f8"
+    );
+  }, [isHomePage]);
+
   return (
     <FavoritesProvider>
       <TeachersProvider>

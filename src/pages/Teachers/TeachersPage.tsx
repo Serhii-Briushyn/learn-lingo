@@ -36,7 +36,7 @@ const TeachersPage = () => {
   };
 
   return (
-    <main className="container m-auto bg-grey-light min-h-screen flex flex-col w-full pb-5 px-10 tablet:px-16 desktop:px-32 relative">
+    <main className="container m-auto min-h-screen flex flex-col w-full pb-5 px-10 tablet:px-16 desktop:px-32 relative">
       <TeachersFilters
         filters={filters}
         setFilters={handleFilterChange}

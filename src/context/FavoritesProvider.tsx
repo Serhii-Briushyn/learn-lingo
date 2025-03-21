@@ -49,7 +49,7 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({
 
   const toggleFavorite = async (teacherId: string) => {
     if (!user) {
-      toast.error("You must be logged in!");
+      toast.error("Please log in or sign up to add teachers to favorites.");
       return;
     }
 

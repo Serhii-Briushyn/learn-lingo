@@ -42,7 +42,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #fff;
+  background-color: var(--background-color, #ffffff); 
   color: var(--color-black);
 }
 
