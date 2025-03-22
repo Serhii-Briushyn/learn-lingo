@@ -10,7 +10,7 @@ const Layout = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 200,
+      duration: 300,
       once: false,
       offset: 100,
       easing: "ease-in",
