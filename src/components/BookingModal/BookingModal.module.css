@@ -1,0 +1,24 @@
+.form {
+  scrollbar-gutter: stable;
+}
+
+.form::-webkit-scrollbar {
+  width: 32px;
+}
+
+.form::-webkit-scrollbar-thumb {
+  background-color: #f0eff4;
+  border-radius: 40px;
+  border: 13px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1440px) {
+  .form::-webkit-scrollbar {
+    width: 64px;
+  }
+  .form::-webkit-scrollbar-thumb {
+    border: 29px solid rgba(0, 0, 0, 0);
+  }
+}

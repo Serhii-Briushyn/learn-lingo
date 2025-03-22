@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { colors } from "helpers/colors";
 import { useThemeColors } from "hooks/useThemeColors";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ColorPicker: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,19 +39,26 @@ const ColorPicker: React.FC = () => {
         style={{ backgroundColor: `var(${selectedColor})` }}
         onClick={() => setIsOpen(!isOpen)}
       ></div>
-
-      {isOpen && (
-        <div className="absolute top-12 left-0 flex flex-col gap-1 transition-all duration-300 ease-in">
-          {colors.map((color) => (
-            <div
-              key={color.main}
-              className="w-8 h-8 rounded-full cursor-pointer hover:scale-110 border border-grey-light transition-all duration-300 ease-in"
-              style={{ backgroundColor: `var(${color.main})` }}
-              onClick={() => handleColorSelect(color)}
-            ></div>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ul
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: "spring", stiffness: 100, damping: 15 }}
+            className="absolute top-10 left-0 flex flex-col gap-1 transition-all duration-300 ease-in"
+          >
+            {colors.map((color) => (
+              <li
+                key={color.main}
+                className="w-8 h-8 rounded-full cursor-pointer hover:scale-110 border border-grey-light transition-all duration-300 ease-in"
+                style={{ backgroundColor: `var(${color.main})` }}
+                onClick={() => handleColorSelect(color)}
+              ></li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

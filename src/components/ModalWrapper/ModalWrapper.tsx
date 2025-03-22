@@ -16,7 +16,7 @@ const ModalWrapper: React.FC<ModalWrapperProps> = ({ onClose, children }) => {
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-dark max-w-[343px] w-full rounded-primary relative p-8 tablet:max-w-[566px] tablet:p-16"
+        className="bg-white dark:bg-dark max-w-[343px] w-full rounded-primary relative tablet:max-w-[566px]"
         onClick={(e) => e.stopPropagation()}
       >
         <button

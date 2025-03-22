@@ -17,18 +17,12 @@ const ToggleFavorite: React.FC<ToggleFavoriteProps> = ({
       className="absolute top-6 right-6 w-6.5 h-6.5 cursor-pointer transition-all ease-in group"
     >
       {isFavorite ? (
-        <svg className="w-full h-full">
+        <svg className="w-full h-full hover:scale-110 transition-all duration-200 ease-in">
           <use href={`/sprite.svg#icon-heart-yellow`} />
         </svg>
       ) : (
-        <svg className="w-full h-full stroke-black dark:stroke-white fill-none group-hover:hidden group-active:hidden">
+        <svg className="w-full h-full stroke-black dark:stroke-white fill-none hover:stroke-yellow-300 hover:scale-110 transition-all duration-200 ease-in">
           <use href={`/sprite.svg#icon-heart`} />
-        </svg>
-      )}
-
-      {!isFavorite && (
-        <svg className="w-full h-full hidden group-hover:block">
-          <use href={`/sprite.svg#icon-heart-yellow`} />
         </svg>
       )}
     </button>

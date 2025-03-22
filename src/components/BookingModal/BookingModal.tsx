@@ -8,6 +8,8 @@ import Input from "components/Input/Input";
 import ModalWrapper from "components/ModalWrapper/ModalWrapper";
 import BookingDescription from "components/BookingDescription/BookingDescription";
 import SuccessMessage from "components/SuccessMessage/SuccessMessage";
+import CustomRadio from "components/CustomRadio/CustomRadio";
+import styles from "./BookingModal.module.css";
 
 const validationSchema = yup.object({
   name: yup.string().required("Name is required"),
@@ -68,46 +70,60 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose, teacher }) => {
       {submitted ? (
         <SuccessMessage onClose={onClose} />
       ) : (
-        <>
-          <BookingDescription
-            teacher={teacher}
-            reasons={reasons}
-            selectedReason={watch("reason")}
-            onChange={handleReasonChange}
-          />
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-4.5">
-              <Input
-                {...register("name")}
-                placeholder="Full Name"
-                error={errors.name}
-              />
-            </div>
-
-            <div className="mb-4.5">
-              <Input
-                {...register("email")}
-                placeholder="Email"
-                error={errors.email}
-              />
-            </div>
-
-            <div className="mb-10">
-              <Input
-                {...register("number")}
-                placeholder="Phone number"
-                error={errors.number}
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="bg-accent text-black flex items-center justify-center font-bold text-lg rounded-xl w-full h-[60px] hover:bg-accent-light transition-all duration-300 ease-in cursor-pointer"
+        <div className="max-h-[95vh] py-8 tablet:py-16 flex flex-col gap-10">
+          <BookingDescription teacher={teacher} />
+          <form
+            className="flex flex-col gap-10 overflow-hidden"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div
+              className={`${styles.form} overflow-auto flex flex-col pl-8 desktop:pl-16`}
             >
-              Book
-            </button>
+              <div className="mb-10">
+                <p className="text-2xl font-medium mb-5">
+                  What is your main reason for learning English?
+                </p>
+                {reasons.map((reason) => (
+                  <CustomRadio
+                    key={reason}
+                    value={reason}
+                    selectedValue={watch("reason")}
+                    onChange={handleReasonChange}
+                  />
+                ))}
+              </div>
+              <div className="mb-4.5">
+                <Input
+                  {...register("name")}
+                  placeholder="Full Name"
+                  error={errors.name}
+                />
+              </div>
+              <div className="mb-4.5">
+                <Input
+                  {...register("email")}
+                  placeholder="Email"
+                  error={errors.email}
+                />
+              </div>
+              <div>
+                <Input
+                  {...register("number")}
+                  placeholder="Phone number"
+                  error={errors.number}
+                />
+              </div>
+            </div>
+            <div className="px-8 desktop:px-16">
+              <button
+                type="submit"
+                className="bg-accent text-black flex items-center justify-center font-bold text-lg rounded-xl w-full py-4 hover:bg-accent-light transition-all duration-300 ease-in cursor-pointer"
+              >
+                Book
+              </button>
+            </div>
           </form>
-        </>
+        </div>
       )}
     </ModalWrapper>
   );

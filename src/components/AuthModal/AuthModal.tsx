@@ -75,51 +75,53 @@ const AuthModal: React.FC<AuthModalProps> = ({ mode = "login", onAction }) => {
 
   return (
     <ModalWrapper onClose={() => onAction()}>
-      <h2 className="text-4xl font-medium mb-5">
-        {mode === "register" ? "Registration" : "Log In"}
-      </h2>
+      <div className="p-8 tablet:p-16">
+        <h2 className="text-4xl font-medium mb-5">
+          {mode === "register" ? "Registration" : "Log In"}
+        </h2>
 
-      <p className="text-base font-normal mb-10">
-        {mode === "register"
-          ? "Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information"
-          : "Welcome back! Please enter your credentials to access your account and continue your search for a teacher."}
-      </p>
+        <p className="text-base font-normal mb-10">
+          {mode === "register"
+            ? "Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information"
+            : "Welcome back! Please enter your credentials to access your account and continue your search for a teacher."}
+        </p>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {mode === "register" && (
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {mode === "register" && (
+            <div className="mb-4.5">
+              <Input
+                {...register("name")}
+                placeholder="Name"
+                error={errors.name}
+              />
+            </div>
+          )}
+
           <div className="mb-4.5">
             <Input
-              {...register("name")}
-              placeholder="Name"
-              error={errors.name}
+              {...register("email")}
+              placeholder="Email"
+              error={errors.email}
             />
           </div>
-        )}
 
-        <div className="mb-4.5">
-          <Input
-            {...register("email")}
-            placeholder="Email"
-            error={errors.email}
-          />
-        </div>
+          <div className="mb-10">
+            <Input
+              {...register("password")}
+              type="password"
+              placeholder="Password"
+              error={errors.password}
+            />
+          </div>
 
-        <div className="mb-10">
-          <Input
-            {...register("password")}
-            type="password"
-            placeholder="Password"
-            error={errors.password}
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="bg-accent text-black flex items-center justify-center font-bold text-lg rounded-xl w-full h-[60px] hover:bg-accent-light transition-all duration-300 ease-in cursor-pointer"
-        >
-          {mode === "register" ? "Sign Up" : "Log in"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="bg-accent text-black flex items-center justify-center font-bold text-lg rounded-xl w-full h-[60px] hover:bg-accent-light transition-all duration-300 ease-in cursor-pointer"
+          >
+            {mode === "register" ? "Sign Up" : "Log in"}
+          </button>
+        </form>
+      </div>
     </ModalWrapper>
   );
 };

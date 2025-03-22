@@ -4,21 +4,16 @@ import PrivateRoute from "components/PrivateRoute";
 import ScrollToTopButton from "components/ScrollToTopButton/ScrollToTopButton";
 import { FavoritesProvider } from "context/FavoritesProvider";
 import { TeachersProvider } from "context/TeachersProvider";
+import NotFoundPage from "pages/NotFoundPage/NotFoundPage";
 import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const HomePage = lazy(() => import("pages/Home/HomePage"));
 const TeachersPage = lazy(() => import("pages/Teachers/TeachersPage"));
 const FavoritesPage = lazy(() => import("pages/Favorites/FavoritesPage"));
 
 function App() {
-  if (localStorage.getItem("theme") === "dark") {
-    document.documentElement.classList.add("dark");
-  } else {
-    document.documentElement.classList.remove("dark");
-  }
-
   return (
     <FavoritesProvider>
       <TeachersProvider>
@@ -30,8 +25,8 @@ function App() {
               <Route path="/favorites" element={<PrivateRoute />}>
                 <Route index element={<FavoritesPage />} />
               </Route>
-              <Route path="*" element={<Navigate to="/" />} />
             </Route>
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </TeachersProvider>

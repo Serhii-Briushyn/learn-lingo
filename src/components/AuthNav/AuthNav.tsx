@@ -2,6 +2,7 @@ import { logout } from "service/authService";
 import { useAuth } from "hooks/useAuth";
 import clsx from "clsx";
 import toast from "react-hot-toast";
+import { FiLogOut } from "react-icons/fi";
 
 interface AuthNavProps {
   onAction: (mode?: "login" | "register") => void;
@@ -33,14 +34,10 @@ const AuthNav: React.FC<AuthNavProps> = ({ onAction, variant = "header" }) => {
             variant === "header" ? headerLoginLogoutBtn : menuUniversalBtn
           }
         >
-          <svg
-            className={clsx(
-              "w-5 h-5 fill-none",
-              variant === "header" ? "stroke-accent" : "stroke-black "
-            )}
-          >
-            <use href={`/sprite.svg#icon-log-in`} />
-          </svg>
+          <FiLogOut
+            size={20}
+            color={variant === "header" ? "var(--color-accent)" : "black"}
+          />
           Logout
         </button>
       ) : (

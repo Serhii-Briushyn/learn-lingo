@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "service/firebase";
+import { db } from "service/firebase";
 import {
   doc,
   getDoc,
@@ -9,38 +9,37 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { FavoritesContext } from "./FavoritesContext";
-import { onAuthStateChanged } from "firebase/auth";
+import { useAuth } from "hooks/useAuth";
 import toast from "react-hot-toast";
 
-interface FavoritesProviderProps {
-  children: React.ReactNode;
-}
-
-export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({
+export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const { user, loading: authLoading } = useAuth();
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [user, setUser] = useState(auth.currentUser);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    if (!user) return;
+    if (!user) {
+      setFavorites([]);
+      setLoading(false);
+      return;
+    }
 
     const fetchFavorites = async () => {
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
+      try {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
 
-      if (userSnap.exists()) {
-        setFavorites(userSnap.data().favorites || []);
-      } else {
-        await setDoc(userRef, { favorites: [] });
+        if (userSnap.exists()) {
+          setFavorites(userSnap.data().favorites || []);
+        } else {
+          await setDoc(userRef, { favorites: [] });
+        }
+      } catch {
+        toast.error("Failed to fetch favorites. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -73,8 +72,10 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({
     }
   };
 
+  if (authLoading) return null;
+
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, loading, toggleFavorite }}>
       {children}
     </FavoritesContext.Provider>
   );

@@ -35,6 +35,8 @@ const TeachersPage = () => {
     setVisibleCount(4);
   };
 
+  if (loading) return <Loader />;
+
   return (
     <main className="container m-auto flex flex-col pb-4 px-4 tablet:pb-8 tablet:px-8 desktop:px-32">
       <TeachersFilters
@@ -42,17 +44,13 @@ const TeachersPage = () => {
         setFilters={handleFilterChange}
         teachers={teachers}
       />
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <TeachersList teachers={visibleTeachers} />
-          <LoadMoreButton
-            hasMore={visibleCount < filteredTeachers.length}
-            onLoadMore={() => setVisibleCount((prev) => prev + 4)}
-          />
-        </>
-      )}
+      <>
+        <TeachersList teachers={visibleTeachers} />
+        <LoadMoreButton
+          hasMore={visibleCount < filteredTeachers.length}
+          onLoadMore={() => setVisibleCount((prev) => prev + 4)}
+        />
+      </>
     </main>
   );
 };

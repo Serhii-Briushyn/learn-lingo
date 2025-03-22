@@ -1,9 +1,9 @@
-import { ClipLoader } from "react-spinners";
+import styles from "./Loader.module.css";
 
 const Loader: React.FC = () => {
   return (
-    <div className="flex justify-center items-center h-40 w-full">
-      <ClipLoader color="#8a8a89" size={50} />
+    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
+      <span className={styles.loader}></span>
     </div>
   );
 };
