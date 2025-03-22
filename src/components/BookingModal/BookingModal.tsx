@@ -102,7 +102,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ onClose, teacher }) => {
 
             <button
               type="submit"
-              className="bg-accent flex items-center justify-center font-bold text-lg rounded-xl w-full h-[60px] hover:bg-accent-light transition-all ease-in cursor-pointer"
+              className="bg-accent text-black flex items-center justify-center font-bold text-lg rounded-xl w-full h-[60px] hover:bg-accent-light transition-all duration-300 ease-in cursor-pointer"
             >
               Book
             </button>

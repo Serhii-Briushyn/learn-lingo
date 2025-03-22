@@ -21,7 +21,7 @@ const ToggleFavorite: React.FC<ToggleFavoriteProps> = ({
           <use href={`/sprite.svg#icon-heart-yellow`} />
         </svg>
       ) : (
-        <svg className="w-full h-full stroke-black fill-none group-hover:hidden group-active:hidden">
+        <svg className="w-full h-full stroke-black dark:stroke-white fill-none group-hover:hidden group-active:hidden">
           <use href={`/sprite.svg#icon-heart`} />
         </svg>
       )}

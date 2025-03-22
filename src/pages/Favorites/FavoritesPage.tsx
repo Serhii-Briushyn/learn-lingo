@@ -23,7 +23,7 @@ const FavoritesPage: React.FC = () => {
   if (loading) return <Loader />;
 
   return (
-    <main className="container m-auto min-h-screen flex flex-col w-full py-5 px-10 tablet:px-16 desktop:px-32 relative">
+    <main className="container m-auto flex flex-col pb-4 pt-4 px-4 tablet:pb-8 tablet:px-8 desktop:px-32">
       {favoriteTeachers.length === 0 ? (
         <p>No favorites yet.</p>
       ) : (

@@ -30,7 +30,7 @@ const CustomRadio: React.FC<CustomRadioProps> = ({
             <use href={`/sprite.svg#icon-radio-checked`} />
           </svg>
         ) : (
-          <svg className="w-full h-full fill-none stroke-black opacity-20 group-hover:hidden  ">
+          <svg className="w-full h-full fill-none stroke-black/20 dark:stroke-white">
             <use href={`/sprite.svg#icon-radio`} />
           </svg>
         )}

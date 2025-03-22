@@ -15,7 +15,7 @@ const LoadMoreButton: React.FC<Props> = ({ hasMore, onLoadMore }) => {
   return (
     <button
       onClick={handleClick}
-      className="bg-accent rounded-xl py-4 px-12 m-auto text-lg font-bold w-max cursor-pointer transition-all ease-in hover:bg-accent-light"
+      className="bg-accent text-black rounded-xl py-4 px-12 m-auto text-lg font-bold w-max cursor-pointer hover:bg-accent-light transition-all duration-300 ease-in"
     >
       Load More
     </button>

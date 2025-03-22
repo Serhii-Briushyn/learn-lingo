@@ -34,17 +34,17 @@ const ColorPicker: React.FC = () => {
   return (
     <div className="absolute top-6 right-6 color-picker" ref={pickerRef}>
       <div
-        className="w-8 h-8 rounded-full cursor-pointer border border-grey-light transition-all duration-300 hover:scale-110"
+        className="w-8 h-8 rounded-full cursor-pointer border border-grey-light hover:scale-110 transition-all duration-300 ease-in"
         style={{ backgroundColor: `var(${selectedColor})` }}
         onClick={() => setIsOpen(!isOpen)}
       ></div>
 
       {isOpen && (
-        <div className="absolute top-12 left-0 flex flex-col gap-1 transition-all duration-300">
+        <div className="absolute top-12 left-0 flex flex-col gap-1 transition-all duration-300 ease-in">
           {colors.map((color) => (
             <div
               key={color.main}
-              className="w-8 h-8 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 border border-grey-light"
+              className="w-8 h-8 rounded-full cursor-pointer hover:scale-110 border border-grey-light transition-all duration-300 ease-in"
               style={{ backgroundColor: `var(${color.main})` }}
               onClick={() => handleColorSelect(color)}
             ></div>

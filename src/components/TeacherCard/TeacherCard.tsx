@@ -15,7 +15,7 @@ const TeacherCard: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <li className="bg-white flex flex-col desktop:flex-row gap-12 p-6 rounded-3xl relative">
+    <li className="bg-white dark:bg-dark-light flex flex-col desktop:flex-row gap-12 p-6 rounded-3xl relative">
       <TeacherAvatar teacher={teacher} />
       <ToggleFavorite
         teacher={teacher}

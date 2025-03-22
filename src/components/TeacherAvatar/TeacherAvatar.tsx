@@ -2,7 +2,7 @@ import { Teacher } from "types/Teacher";
 
 const TeacherAvatar: React.FC<{ teacher: Teacher }> = ({ teacher }) => (
   <div className="flex max-tablet:flex-col max-desktop:flex-row max-desktop:gap-8">
-    <div className="flex justify-center items-center max-tablet:m-auto w-30 h-30 bg-white border-3 border-accent-light rounded-full flex-shrink-0 relative">
+    <div className="flex justify-center items-center max-tablet:m-auto w-30 h-30 bg-transparent border-3 border-accent-light rounded-full flex-shrink-0 relative">
       <img
         src={teacher.avatar_url}
         alt={`${teacher.name} ${teacher.surname}`}

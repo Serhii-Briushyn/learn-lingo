@@ -17,7 +17,7 @@ const TeacherActions: React.FC<{ teacher: Teacher }> = ({ teacher }) => {
     <>
       <button
         onClick={handleOpenModal}
-        className="bg-accent rounded-xl py-4 px-12 text-lg font-bold tablet:w-max cursor-pointer transition-all ease-in hover:bg-accent-light"
+        className="bg-accent text-black rounded-xl py-4 px-12 text-lg font-bold tablet:w-max cursor-pointer transition-all duration-300 ease-in hover:bg-accent-light"
       >
         Book trial lesson
       </button>

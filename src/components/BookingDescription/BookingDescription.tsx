@@ -15,11 +15,11 @@ const BookingDescription: React.FC<BookingDescriptionProps> = ({
   onChange,
 }) => {
   return (
-    <div className="mb-10">
+    <div className="mb-1">
       <h3 className="text-[40px] leading-[1.2] tracking-[-0.02em] font-medium mb-5">
         Book trial lesson
       </h3>
-      <p className="text-base/snug font-normal text-black/80 mb-5">
+      <p className="text-base/snug font-normal opacity-80 mb-5">
         Our experienced tutor will assess your current language level, discuss
         your learning goals, and tailor the lesson to your specific needs.
       </p>

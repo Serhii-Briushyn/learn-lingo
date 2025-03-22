@@ -1,13 +1,14 @@
 import ColorPicker from "components/ColorPicker/ColorPicker";
+// import ThemeToggle from "components/ThemeToggle/ThemeToggle";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
     <section className="flex flex-col desktop:flex-row gap-6 desktop:h-[530px]">
-      <div className="bg-grey-light rounded-primary w-full py-24 px-4 tablet:px-16">
+      <div className="bg-grey-light dark:bg-dark-light rounded-primary w-full py-24 px-4 tablet:px-16 relative">
         <h1 className="text-4xl desktop:text-5xl font-medium text-left mb-8 leading-[1.16] ">
           Unlock your potential with the best{" "}
-          <span className="bg-accent-light rounded-xl px-2 italic font-normal">
+          <span className="bg-accent-light text-black rounded-xl px-2 italic font-normal">
             language
           </span>{" "}
           tutors
@@ -18,10 +19,11 @@ const HeroSection = () => {
           highly qualified and experienced tutors.
         </p>
         <Link to="/teachers">
-          <button className="bg-accent flex items-center justify-center font-bold text-lg rounded-xl w-full tablet:w-[267px] h-[60px] hover:bg-accent-light transition-all ease-in cursor-pointer">
+          <button className="bg-accent text-black flex items-center justify-center font-bold text-lg rounded-xl w-full tablet:w-[267px] h-[60px] hover:bg-accent-light transition-all duration-300 ease-in cursor-pointer">
             Get started
           </button>
         </Link>
+        {/* <ThemeToggle /> */}
       </div>
 
       <div className="bg-accent-light rounded-primary w-full desktop:max-w-[568px] h-[530px] relative pt-20 ">
@@ -31,7 +33,7 @@ const HeroSection = () => {
           alt="Girl Photo"
         />
         <div className="bg-linear-to-bl from-gradient-from to-gradient-to rounded-t-lg max-w-72 tablet:max-w-[375px] w-full h-[176px] absolute  bottom-0 left-1/2 -translate-x-1/2 z-10 flex justify-center items-center">
-          <svg className="w-[47px] h-[57px] fill-accent-light    ">
+          <svg className="w-[47px] h-[57px] fill-accent-light">
             <use href={`/sprite.svg#icon-apple`} />
           </svg>
         </div>

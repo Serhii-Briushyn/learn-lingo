@@ -2,7 +2,7 @@ import CountUp from "react-countup";
 
 const StatsSection = () => {
   return (
-    <section className="grid grid-cols-2 gap-4 tablet:flex justify-between desktop:justify-center items-center desktop:gap-25 border-[1.5px] border-dashed border-accent rounded-primary p-10 ">
+    <section className="grid text-inherit grid-cols-2 gap-4 tablet:flex justify-between desktop:justify-center items-center desktop:gap-25 border-[1.5px] border-dashed border-accent rounded-primary p-10 ">
       <div className="flex items-center max-desktop:flex-col gap-4">
         <p className="text-xl tablet:text-2xl desktop:text-3xl font-medium">
           <CountUp end={32000} duration={4} separator="," /> +

@@ -36,7 +36,7 @@ const ScrollToTopButton = () => {
           exit={{ opacity: 0, scale: 0 }}
           transition={{ duration: 0.3 }}
           onClick={handleClick}
-          className="fixed bottom-10 right-10 cursor-pointer w-12 h-12 bg-[#e9e9e9] rounded-full flex items-center justify-center z-1000"
+          className="fixed bottom-10 right-10 cursor-pointer w-12 h-12 bg-[#e9e9e9] dark:bg-dark-light rounded-full flex items-center justify-center z-1000"
         >
           <svg width={"50px"} height={"50px"} viewBox="0 0 100 100">
             <circle

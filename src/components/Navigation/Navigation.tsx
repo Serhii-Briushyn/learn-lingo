@@ -3,46 +3,53 @@ import clsx from "clsx";
 import { useAuth } from "hooks/useAuth";
 
 interface NavigationProps {
-  variant?: "menu" | "header";
   onLinkClick?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({
-  variant = "header",
-  onLinkClick,
-}) => {
+const Navigation: React.FC<NavigationProps> = ({ onLinkClick }) => {
   const { user } = useAuth();
 
   const linkClass: NavLinkProps["className"] = ({ isActive }) => {
-    const baseHeader = "text-base font-normal transition-all";
-    const baseMenu =
-      "text-xl font-medium transition-all border-b-2 border-accent-light";
+    const baseClass = "transition-all duration-300 ease-in opacity-60";
+    const activeClass = "underline opacity-100 cursor-default";
+    const hoverClass = "hover:opacity-100";
+    return clsx([baseClass, isActive ? activeClass : hoverClass]);
+  };
 
-    const activeHeader = "border-b-2";
-    const hoverHeader = "hover:border-b-2 ";
-
-    const activeMenu = "border-black";
-    const hoverMenu = "hover:border-black ";
-
-    return clsx(
-      variant === "header" && [
-        baseHeader,
-        isActive ? activeHeader : hoverHeader,
-      ],
-      variant === "menu" && [baseMenu, isActive ? activeMenu : hoverMenu]
-    );
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    isActive: boolean
+  ) => {
+    if (isActive) e.preventDefault();
+    if (onLinkClick && !isActive) onLinkClick();
   };
 
   return (
     <>
-      <NavLink onClick={onLinkClick} className={linkClass} to="/">
+      <NavLink
+        onClick={(e) => handleClick(e, window.location.pathname === "/")}
+        className={linkClass}
+        to="/"
+      >
         Home
       </NavLink>
-      <NavLink onClick={onLinkClick} className={linkClass} to="/teachers">
+      <NavLink
+        onClick={(e) =>
+          handleClick(e, window.location.pathname === "/teachers")
+        }
+        className={linkClass}
+        to="/teachers"
+      >
         Teachers
       </NavLink>
       {user && (
-        <NavLink onClick={onLinkClick} className={linkClass} to="/favorites">
+        <NavLink
+          onClick={(e) =>
+            handleClick(e, window.location.pathname === "/favorites")
+          }
+          className={linkClass}
+          to="/favorites"
+        >
           Favorites
         </NavLink>
       )}

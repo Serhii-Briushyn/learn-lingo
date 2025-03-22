@@ -9,11 +9,11 @@ interface AuthNavProps {
 }
 
 const headerLoginLogoutBtn =
-  "flex gap-2 items-center text-base/tight font-bold cursor-pointer text-black transition-all hover:text-grey hover:scale-110 ease-in";
+  "flex gap-2 items-center text-base/tight font-bold cursor-pointer hover:text-grey transition-all duration-300 ease-in";
 const headerRegisterBtn =
-  "bg-black rounded-xl px-10 py-3.5 text-white cursor-pointer hover:bg-grey transition-colors ease-in";
+  "bg-black dark:bg-dark-light rounded-xl px-10 py-3.5 text-white cursor-pointer hover:bg-grey transition-all duration-300 ease-in";
 const menuUniversalBtn =
-  "bg-accent flex gap-2 justify-center items-center text-base font-bold cursor-pointer border-2 border-accent box-border rounded-xl px-10 py-3.5 transition-all ease-in hover:bg-accent-light";
+  "bg-accent text-black flex gap-2 justify-center items-center text-base font-bold cursor-pointer border-2 border-accent box-border rounded-xl px-10 py-3.5 hover:bg-accent-light transition-all duration-300 ease-in";
 
 const AuthNav: React.FC<AuthNavProps> = ({ onAction, variant = "header" }) => {
   const { user } = useAuth();
@@ -36,7 +36,7 @@ const AuthNav: React.FC<AuthNavProps> = ({ onAction, variant = "header" }) => {
           <svg
             className={clsx(
               "w-5 h-5 fill-none",
-              variant === "header" ? "stroke-accent" : "stroke-black"
+              variant === "header" ? "stroke-accent" : "stroke-black "
             )}
           >
             <use href={`/sprite.svg#icon-log-in`} />
@@ -71,7 +71,7 @@ const AuthNav: React.FC<AuthNavProps> = ({ onAction, variant = "header" }) => {
               variant === "header" ? headerRegisterBtn : menuUniversalBtn
             }
           >
-            Sign Up
+            Registration
           </button>
         </div>
       )}

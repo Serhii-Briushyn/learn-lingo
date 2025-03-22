@@ -1,3 +1,4 @@
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 
 interface DropdownProps {
@@ -43,12 +44,12 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div className="relative" ref={dropdownRef}>
       <div
-        className={`bg-white w- rounded-[14px] py-3.5 px-4.5 text-lg/tight font-medium flex justify-between items-center cursor-pointer ${widthMap[type]}`}
+        className={`bg-white dark:bg-dark-light rounded-[14px] py-3.5 px-4.5 text-lg/tight font-medium flex justify-between items-center cursor-pointer ${widthMap[type]}`}
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <span className="truncate w-full">{value}</span>
         <svg
-          className={`max-w-5 h-5 w-full fill-none stroke-black transition-transform ${
+          className={`max-w-5 h-5 w-full fill-none stroke-black dark:stroke-white transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
         >
@@ -56,21 +57,29 @@ const Dropdown: React.FC<DropdownProps> = ({
         </svg>
       </div>
 
-      {isOpen && (
-        <ul className="absolute left-0 top-[calc(100%+4px)] w-full flex flex-col gap-2 bg-white rounded-[14px] py-3.5 px-4.5 z-10">
-          {options.map((option) => (
-            <li
-              key={option}
-              onClick={() => handleSelect(option)}
-              className={`text-lg/tight font-medium w-full truncate cursor-pointer transition-all ease-in ${
-                value === option ? "text-black" : "opacity-20"
-              } hover:opacity-100`}
-            >
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.ul
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute left-0 top-[calc(100%+4px)] w-full flex flex-col gap-2 bg-white dark:bg-dark-light rounded-[14px] py-3.5 px-4.5 z-10"
+          >
+            {options.map((option) => (
+              <li
+                key={option}
+                onClick={() => handleSelect(option)}
+                className={`text-lg/tight font-medium w-full truncate cursor-pointer transition-all duration-200 ease-in ${
+                  value === option ? "text-black dark:text-white" : "opacity-20"
+                } hover:opacity-100`}
+              >
+                {option}
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
