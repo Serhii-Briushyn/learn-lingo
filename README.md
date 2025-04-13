@@ -17,7 +17,7 @@ Learn Lingo is a modern web application that helps users find and connect with q
 1. Clone the repository:
 
 ```bash
- git clone https://github.com/yourusername/learn-lingo.git
+ git clone https://github.com/Serhii-Briushyn/learn-lingo.git
 ```
 
 2. Install dependencies:
